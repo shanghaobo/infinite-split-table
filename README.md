@@ -1,0 +1,107 @@
+# infinite-split-table
+
+> 通过代码配置无限分割表格，可快速实现任意布局
+
+## 示例配置
+
+```js
+tree_data:{
+  type:'column',
+  id:0,
+  data:[
+    {
+      id:1,
+      type:'row',
+      data:[
+        {
+          id:2,
+          type:'label',
+          data:'1',
+          width:'20%'
+        },
+        {
+          id:3,
+          type:'label',
+          data:'2'
+        },
+        {
+          id:4,
+          type:'column',
+          width:'20%',
+          data:[
+            {
+              id:5,
+              type:'row',
+              data:[
+                {
+                  id:7,
+                  type:'label',
+                  data:'3'
+                },
+                {
+                  id:8,
+                  type:'label',
+                  data:'4'
+                },
+              ]
+            },
+            {
+              id:6,
+              type:'row',
+              data:[
+                {
+                  id:9,
+                  type:'label',
+                  data:'5'
+                },
+                {
+                  id:10,
+                  type:'label',
+                  data:'6'
+                },
+              ]
+            },
+
+          ]
+        }
+      ],
+    },
+    {
+      id:11,
+      type:'label',
+      data:'7'
+    },
+    {
+      id:12,
+      type:'row',
+      data:[
+        {
+          id:13,
+          type:'label',
+          data:'8',
+          width:'150px'
+        },
+        {
+          id:14,
+          type:'label',
+          data:'9'
+        },
+        {
+          id:15,
+          type:'label',
+          data:'10',
+          width:'150px'
+        },
+        {
+          id:16,
+          type:'label',
+          data:'11'
+        },
+      ]
+    }
+  ]
+}
+```
+## 示例效果
+
+![demo](demo.png)
