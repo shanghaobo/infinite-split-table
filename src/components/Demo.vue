@@ -43,7 +43,7 @@
                         {
                           id:7,
                           type:'label',
-                          data:'3'
+                          data:'3',
                         },
                         {
                           id:8,
@@ -76,7 +76,7 @@
             {
               id:11,
               type:'label',
-              data:'7'
+              data:'7',
             },
             {
               id:12,

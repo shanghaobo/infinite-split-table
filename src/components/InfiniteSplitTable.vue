@@ -4,34 +4,25 @@
     cellpadding="0"
     cellspacing="0"
     :class="{'top-border':deep==0,'left-border':deep==0}">
-    <template v-if="tree_data.type=='column'">
-      <!--纵向排列-->
+    <template>
       <tr
-        v-for="(item,index) in tree_data.data"
+        v-for="line in for_data"
         style="width: 100%;"
-        :style="{height:typeof item.height!='undefined'?item.height:'auto'}">
-        <td>
-          <infinite-split-table-item
-          :tree_data="tree_data"
-          :item="item"
-          :index="index"
-          :deep="deep">
-          </infinite-split-table-item>
-        </td>
-      </tr>
-    </template>
-    <template v-else-if="tree_data.type=='row'">
-      <!--横向排列-->
-      <tr>
+        :style="{height:typeof line[0].height!='undefined'?line[0].height:'auto'}">
         <td
-          v-for="(item,index) in tree_data.data"
+          v-for="item in line"
           :style="{width:typeof item.width!='undefined'?item.width:'auto'}">
-          <infinite-split-table-item
-          :tree_data="tree_data"
-          :item="item"
-          :index="index"
-          :deep="deep">
-          </infinite-split-table-item>
+          <div v-if="item.type!='row'&&item.type!='column'" class="text">
+            <span v-if="item.type=='label'">
+              {{item.data}}
+            </span>
+          </div>
+          <!--递归调用-->
+          <infinite-split-table
+            v-else
+            :tree_data="item"
+            :deep="deep+1">
+          </infinite-split-table>
         </td>
       </tr>
     </template>
@@ -40,10 +31,23 @@
 <script>
   export default{
     name:'InfiniteSplitTable',
-    components:{
-      InfiniteSplitTableItem:()=>import('./InfiniteSplitTableItem.vue')
-    },
     props:['tree_data','deep'],
+    computed:{
+      for_data(){
+        let type=this.tree_data.type;
+        let data=this.tree_data.data;
+        let result=[];
+        if(type==='row'){
+          result.push(data);
+        }
+        else if(type==='column'){
+          for(let i=0;i<data.length;i++){
+            result.push([data[i]]);
+          }
+        }
+        return result;
+      }
+    }
   }
 </script>
 <style scoped>
@@ -55,5 +59,15 @@
   }
   .top-border{
     border-top: 1px solid black;
+  }
+  .text{
+    padding: 5px;
+    box-sizing: border-box;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 100%;
+    min-height: 30px;
+    word-wrap: break-word;
+    word-break: break-all;
   }
 </style>
