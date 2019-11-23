@@ -2,6 +2,8 @@
 
 > 通过配置无限分割表格，可快速实现任意复杂布局的报表
 
+[在线演示](https://qinyushop.com/InfiniteSplitTable.html)
+
 ## 配置说明
 - 每一行，每一列都可以当做一个节点
 - 每个节点里可嵌套节点
