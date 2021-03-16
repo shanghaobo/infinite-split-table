@@ -1,0 +1,131 @@
+<template>
+  <div style="width:100%;height:100%;position:absolute;left:0;top:0">
+    <p style="margin:10px 0 0 50px">
+      <b>项目地址：</b>
+      <a href="https://github.com/shanghaobo/infinite-split-table">
+        https://github.com/shanghaobo/infinite-split-table
+      </a>
+    </span>
+   <div style="text-align: center;padding:20px;width:55%;position:absolute;left:0;">
+      <infinite-split-table :tree_data="tree_data" :deep="0"></infinite-split-table>
+   </div>
+   <div style="position:absolute;right:0;width:40%;padding:20px;">
+     <v-json-editor v-if="jsonShow" :is="jsonShow" v-model=tree_data height='600px'></v-json-editor>
+   </div>
+  </div>
+</template>
+<script>
+
+  export default{
+    components:{
+      InfiniteSplitTable:()=>import('./InfiniteSplitTable.vue')
+    },
+    mounted(){
+      import('v-jsoneditor').then(module=>{
+        this.jsonShow=module.default
+      })
+    },
+    data(){
+      return{
+        jsonShow:null,
+        tree_data:{
+          type:'column',
+          id:0,
+          data:[
+            {
+              id:1,
+              type:'row',
+              data:[
+                {
+                  id:2,
+                  type:'label',
+                  data:'1',
+                  width:'20%'
+                },
+                {
+                  id:3,
+                  type:'label',
+                  data:'2'
+                },
+                {
+                  id:4,
+                  type:'column',
+                  width:'20%',
+                  data:[
+                    {
+                      id:5,
+                      type:'row',
+                      data:[
+                        {
+                          id:7,
+                          type:'label',
+                          data:'3',
+                        },
+                        {
+                          id:8,
+                          type:'label',
+                          data:'4'
+                        },
+                      ]
+                    },
+                    {
+                      id:6,
+                      type:'row',
+                      data:[
+                        {
+                          id:9,
+                          type:'label',
+                          data:'5'
+                        },
+                        {
+                          id:10,
+                          type:'label',
+                          data:'6'
+                        },
+                      ]
+                    },
+
+                  ]
+                }
+              ],
+            },
+            {
+              id:11,
+              type:'label',
+              data:'7',
+            },
+            {
+              id:12,
+              type:'row',
+              data:[
+                {
+                  id:13,
+                  type:'label',
+                  data:'8',
+                  width:'150px'
+                },
+                {
+                  id:14,
+                  type:'label',
+                  data:'9'
+                },
+                {
+                  id:15,
+                  type:'label',
+                  data:'10',
+                  width:'150px'
+                },
+                {
+                  id:16,
+                  type:'label',
+                  data:'11'
+                },
+              ]
+            }
+          ]
+        },
+
+      }
+    }
+  }
+</script>
